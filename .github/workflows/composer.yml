@@ -25,6 +25,9 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         service_account_email: ${{ secrets.GCP_SA_EMAIL }}
 
+    - name: Set Cloud Project
+      run: gcloud config set project airflow-tutorial 
+
     - name: Copy DAGs to Composer
       run: |
         gcloud composer environments storage dags import \
