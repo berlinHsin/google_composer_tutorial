@@ -28,7 +28,7 @@ jobs:
     - name: Copy DAGs to Composer
       run: |
         gcloud composer environments storage dags import \
-          --environment netskope \
+          --environment airflow-tutorial \
           --location us-central1 \
           --source dags
 
