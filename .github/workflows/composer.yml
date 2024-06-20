@@ -19,7 +19,7 @@ jobs:
         version: 'latest'
 
     - name: Decode GCP_SA_KEY_BASE64 and write to file
-      run: base "${{ secrets.GCP_SA_KEY }}" > key.json
+      run: base64 "${{ secrets.GCP_SA_KEY }}" > key.json
 
     - name: Checkout
       run: cat key.json
