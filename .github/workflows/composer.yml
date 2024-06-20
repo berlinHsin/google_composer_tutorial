@@ -27,6 +27,11 @@ jobs:
 
     - name: Set Cloud Project
       run: gcloud config set project airflow-tutorial 
+
+    - name: Update Dependency
+      run: gcloud composer environments update netskope \
+          --location us-central1 \
+          --update-pypi-packages-from-file requirements.txt
     
     - name: Remove old files
       run: |

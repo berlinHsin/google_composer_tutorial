@@ -3,6 +3,7 @@ import datetime
 from airflow import models
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
+import pandas as pd
 
 default_dag_args = {
     "start_date": datetime.datetime(2024, 6, 18),
@@ -19,7 +20,8 @@ with models.DAG(
     
     def greeting():
         import logging
-
+        df = pd.DataFrame({'name': ['Berlin']})
+        logging.info(df)
         logging.info("Hello World!")
 
     # An instance of an operator is called a task. In this case, the
