@@ -19,9 +19,15 @@ jobs:
         version: 'latest'
         service_account_email: ${{ secrets.GCP_SA_EMAIL }}
         service_account_key: ${{ secrets.GCP_SA_KEY }}
+    
+    - name: Write GCP_SA_KEY to file
+      run: echo "${{ secrets.GCP_SA_KEY }}" > key.json
+
+    - name: Check key file content
+      run: cat key.json
 
     - name: Authenticate to Google Cloud
-      run: gcloud auth activate-service-account ${{ secrets.GCP_SA_EMAIL }} --key-file=${{ secrets.GCP_SA_KEY }}
+      run: gcloud auth activate-service-account ${{ secrets.GCP_SA_EMAIL }} --key-file=key.json
 
     - name: Copy DAGs to Composer
       run: |
