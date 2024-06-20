@@ -14,7 +14,7 @@ default_dag_args = {
 # DAG object.
 with models.DAG(
     "tester",
-    schedule_interval=datetime.timedelta(hours=1),
+    schedule_interval=datetime.timedelta(minutes=10),
     default_args=default_dag_args,
 ) as dag:
     
