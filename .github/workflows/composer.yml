@@ -21,14 +21,14 @@ jobs:
     - name: Authenticate to Google Cloud\
       uses: google-github-actions/setup-gcloud@v0.2.0
       with:
-        project_id: netskope
+        project_id: airflow-tutorial
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         service_account_email: ${{ secrets.GCP_SA_EMAIL }}
 
     - name: Copy DAGs to Composer
       run: |
         gcloud composer environments storage dags import \
-          --environment airflow-tutorial \
+          --environment netskope \
           --location us-central1 \
           --source dags
 
