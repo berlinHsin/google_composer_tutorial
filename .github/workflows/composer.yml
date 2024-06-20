@@ -30,8 +30,9 @@ jobs:
     
     - name: Remove old files
       run: |
-        gsutil -m rm gs://us-central1-netskope-99d85477-bucket/dags/*
-        gsutil -m mv gs://us-central1-netskope-99d85477-bucket/dags/airflow_monitoring.py gs://us-central1-netskope-99d85477-bucket/dags/airflow_monitoring.py.bak || true
+        gsutil ls gs://us-central1-netskope-99d85477-bucket/dags/ > all_files.txt
+        grep -v "airflow_monitoring.py" all_files.txt > files_to_delete.txt
+        cat files_to_delete.txt | xargs -I {} gsutil rm {}
 
     - name: Upload new files
       run: gsutil cp -r dags/* gs://us-central1-netskope-99d85477-bucket/dags/
