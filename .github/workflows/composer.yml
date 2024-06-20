@@ -21,12 +21,9 @@ jobs:
     - name: Authenticate to Google Cloud\
       uses: google-github-actions/setup-gcloud@v0.2.0
       with:
-        project_id: airflow-tutorial
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-
-    - name: Set Cloud Project
-      run: gcloud config set project airflow-tutorial 
 
     - name: Update Dependency
       run: |
