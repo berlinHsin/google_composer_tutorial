@@ -1,0 +1,9 @@
+steps:
+- name: Setup Python environment
+  image: google/cloud-build-tools:latest
+  cmd: ["cloud", "build", "setup", "-m", "./"]
+
+- name: Sync DAGs to Composer
+  image: apache/airflow-base:latest-python3.8
+  entrypoint: ["bash"]
+  args: ["-c", "composer dag-sync"]
