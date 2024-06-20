@@ -23,9 +23,6 @@ jobs:
     - name: Write GCP_SA_KEY to file
       run: echo "${{ secrets.GCP_SA_KEY }}" > key.json
 
-    - name: Check key file content
-      run: cat key.json
-
     - name: Authenticate to Google Cloud
       run: gcloud auth activate-service-account ${{ secrets.GCP_SA_EMAIL }} --key-file=key.json
 
