@@ -19,7 +19,10 @@ jobs:
         version: 'latest'
 
     - name: Decode GCP_SA_KEY_BASE64 and write to file
-      run: echo -n "${{ secrets.GCP_SA_KEY }}" | base64 > key.json
+      run: base "${{ secrets.GCP_SA_KEY }}" > key.json
+
+    - name: Checkout
+      run: cat key.json
 
     - name: Authenticate to Google Cloud
       run: gcloud auth activate-service-account ${{ secrets.GCP_SA_EMAIL }} --key-file=key.json
