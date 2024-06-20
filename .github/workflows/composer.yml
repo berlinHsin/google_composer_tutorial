@@ -30,7 +30,7 @@ jobs:
     
     - name: Remove old files
       run: |
-        gsutil ls ${{ GCP_COMPOSER_DAG_FOLDER }} > all_files.txt
+        gsutil ls ${{ secrets.GCP_COMPOSER_DAG_FOLDER }} > all_files.txt
         grep -v "airflow_monitoring.py" all_files.txt > files_to_delete.txt
         cat files_to_delete.txt | xargs -I {} gsutil rm {}
 
