@@ -28,6 +28,9 @@ jobs:
     - name: Set Cloud Project
       run: gcloud config set project airflow-tutorial 
 
+    - name: Test list files
+      run: list gs://us-central1-netskope-99d85477-bucket/dags
+
     - name: Copy DAGs to Composer
       run: |
         gcloud composer environments storage dags import \
