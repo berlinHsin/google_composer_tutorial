@@ -28,4 +28,4 @@ jobs:
 
       - name: Upload DAGs
         run: |
-          gcloud compute ssh airflow-test --zone us-central1-b --command "sudo cp dags/airflow_main.py /opt"
+          gcloud compute ssh airflow-test --zone us-central1-b --command "ls -al"
