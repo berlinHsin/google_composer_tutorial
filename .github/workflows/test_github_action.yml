@@ -30,7 +30,7 @@ jobs:
         
     - name: Upload DAGs
       run: |
-        gcloud compute scp -r dags instance-20240812-082629:/tmp/dags --zone us-central1-c
+        gcloud compute scp --recurse dags instance-20240812-082629:/tmp --zone us-central1-c
 
     - name: Move to OPT
       run: |
