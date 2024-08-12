@@ -28,4 +28,4 @@ jobs:
 
       - name: Upload DAGs
         run: |
-          gcloud compute ssh airflow-test --zone us-central1-b --command "ls -al"
+          gcloud compute ssh instance-20240812-082629 --zone us-central1-b --command "ls -al"
