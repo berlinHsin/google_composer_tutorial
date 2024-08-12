@@ -13,13 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/setup-gcloud@v0.2.0
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
         with:
+          version: 'latest'
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-
 
       - name: Upload DAGs
         run: |
