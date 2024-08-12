@@ -18,5 +18,6 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v2'
 
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
+    - name: Upload DAGs
+        run: |
+          gcloud compute ssh instance-20240812-082629 --zone us-central1-c --command "ls -al"
