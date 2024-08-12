@@ -22,4 +22,4 @@ jobs:
 
     - name: Upload DAGs
       run: |
-        gcloud compute scp dags/airflow_main.py instance-20240812-082629:~/airflow_main.py --zone us-central1-c
+        gcloud compute scp ~/dags/airflow_main.py instance-20240812-082629:~ --zone us-central1-c
