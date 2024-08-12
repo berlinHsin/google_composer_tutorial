@@ -20,6 +20,10 @@ jobs:
       with:
         project_id: ${{ secrets.GCP_PROJECT }}
 
-    - name: Upload DAGs
+    - name: Check folders
       run: |
         gcloud compute ssh instance-20240812-082629 --zone us-central1-c --command "ls -al"
+
+    - name: Upload DAGs
+      run: |
+        gcloud compute scp instance-20240812-082629 --zone us-central1-c dags/airflow_main.py .
