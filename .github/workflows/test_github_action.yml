@@ -38,4 +38,4 @@ jobs:
 
     - name: Move to OPT
       run: |
-        gcloud compute ssh ${{ env.GCP_INSTANCE }} --zone ${{ env.ZONE }} --command "sudo mv --rf /tmp/dags/* /opt/airflow/dags"    
+        gcloud compute ssh ${{ env.GCP_INSTANCE }} --zone ${{ env.ZONE }} --command "sudo rsync -av --delete /tmp/dags/ /opt/airflow/dags/"    
