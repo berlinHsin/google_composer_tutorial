@@ -3,7 +3,7 @@ name: Deploy to GCP VM using gsutil
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
