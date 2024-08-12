@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  GCP_INSTANCE: instance-20240812-082629
+  ZONE: us-central1-c
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,13 +30,12 @@ jobs:
 
     - name: Remove Old DAGs
       run: |
-        gcloud compute ssh instance-20240812-082629 --zone us-central1-c --command "rm -rf /tmp/dags"
+        gcloud compute ssh ${{ env.GCP_INSTANCE }} --zone ${{ env.ZONE }} --command "rm -rf /tmp/dags"
         
     - name: Upload DAGs
       run: |
-        gcloud compute scp --recurse dags instance-20240812-082629:/tmp --zone us-central1-c
+        gcloud compute scp --recurse dags ${{ env.GCP_INSTANCE }}:/tmp --zone ${{ env.ZONE }}
 
     - name: Move to OPT
       run: |
-        gcloud compute ssh instance-20240812-082629 --zone us-central1-c --command "sudo mv /tmp/dags /opt/"
-      
+        gcloud compute ssh ${{ env.GCP_INSTANCE }} --zone ${{ env.ZONE }} --command "sudo mv /tmp/dags /opt/airflow/dags"    
