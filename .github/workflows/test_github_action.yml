@@ -24,6 +24,15 @@ jobs:
       with:
         project_id: ${{ secrets.GCP_PROJECT }}
 
+    - name: Remove Old DAGs
+      run: |
+        gcloud compute ssh instance-20240812-082629 --zone us-central1-c --command "rm -rf /tmp/dags"
+        
     - name: Upload DAGs
       run: |
-        gcloud compute scp dags/airflow_main.py instance-20240812-082629:~ --zone us-central1-c
+        gcloud compute scp -r dags instance-20240812-082629:/tmp/dags --zone us-central1-c
+
+    - name: Move to OPT
+      run: |
+        gcloud compute ssh instance-20240812-082629 --zone us-central1-c --command "sudo mv /tmp/dags /opt/"
+      
